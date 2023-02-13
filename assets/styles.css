@@ -4,6 +4,71 @@
     box-sizing: border-box;
 }
 
-header, nav, main {
-    margin: 2rem;
+header{
+    background-color: wheat;
+}
+
+.logo {
+    width: 6rem;
+    margin-top: 0.5rem;
+}
+
+nav{
+    background-color: rgb(205, 205, 205);
+}
+
+nav h1 {
+    text-align: center;
+    padding: 1rem;
+}
+
+.loupe {
+    margin-top: 0.5rem;
+}
+
+.card img {
+    box-shadow: -5px -5px 57px -17px rgba(0,0,0,0.65);
+    -webkit-box-shadow: -5px -5px 57px -17px rgba(0,0,0,0.65);
+    -moz-box-shadow: -5px -5px 57px -17px rgba(0,0,0,0.65);
+}
+
+.price {
+    margin-right: 1.5rem;
+}
+
+footer {
+    margin-top: 2rem;
+    position: relative;
+    bottom: 0;
+    padding: 30px 20px;
+    width: 100%;
+    background-color: rgb(205, 205, 205);
+}
+
+.redes {
+    margin-right: 1.5rem;
+}
+
+.contact {
+    margin: 5% 30%;
+    padding: 2rem;
+    border: 3px solid pink;
+    background-color: rgb(250, 232, 235);
+    border-radius: 5%;
+    box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
+    -webkit-box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
+    -moz-box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
+}
+
+.container-horizontal-card {
+    margin: 5% 20%;
+}
+
+.container-table {
+    margin: 5% 10%;
+}
+
+thead {
+    border: 1px solid black;
+    background-color: rgb(205, 204, 204);
 }
