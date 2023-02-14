@@ -4,8 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 header{
-    background-color: wheat;
+    background-color: #e4ebf0;
 }
 
 .logo {
@@ -13,13 +19,29 @@ header{
     margin-top: 0.5rem;
 }
 
+.encabezado {
+    display: flex;
+    justify-content: space-around;
+}
+
 nav{
-    background-color: rgb(205, 205, 205);
+    margin-bottom: 1rem;
+    background-color: #4180ab;
 }
 
 nav h1 {
     text-align: center;
     padding: 1rem;
+    color: white;
+}
+
+nav h1 a {
+    text-decoration: none;
+    color: white;
+}
+
+nav h1 a:hover {
+    color: #0a58ca;
 }
 
 .loupe {
@@ -38,11 +60,10 @@ nav h1 {
 
 footer {
     margin-top: 2rem;
-    position: relative;
-    bottom: 0;
     padding: 30px 20px;
     width: 100%;
-    background-color: rgb(205, 205, 205);
+    background-color: #bdd1de;
+    margin-top: auto;
 }
 
 .redes {
@@ -52,8 +73,8 @@ footer {
 .contact {
     margin: 5% 30%;
     padding: 2rem;
-    border: 3px solid pink;
-    background-color: rgb(250, 232, 235);
+    border: 3px solid #8ab3cf;
+    background-color: #e4ebf0;
     border-radius: 5%;
     box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
     -webkit-box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
@@ -70,5 +91,9 @@ footer {
 
 thead {
     border: 1px solid black;
-    background-color: rgb(205, 204, 204);
+    background-color: rgb(227, 239, 248);
+}
+
+td {
+    padding: 2px;
 }
