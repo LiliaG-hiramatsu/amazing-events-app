@@ -17,53 +17,58 @@
   </head>
   <body>
     <header>
-      <div class="container d-flex flex-row justify-content-between">
+      <div class="header d-flex justify-content-between">
         <div>
           <img src="./assets/images/Logo Amazing Events.png" alt="" class="logo"/>
         </div>
-        <div>
-          <ul class="nav justify-content-end">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./home.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./upcoming_events.html">Upcoming Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./past_events.html">Past Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./stats.html">Stats</a>
-            </li>
-          </ul>
-        </div>
+        <nav class="navbar navbar-expand-sm justify-content-end">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#opciones" name="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="opciones">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./upcoming_events.html">Upcoming Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./past_events.html">Past Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./stats.html">Stats</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
       </div>
-    </header>
-    <nav>
       <div class="encabezado">
         <h1><a href="./past_events.html"> < </a></h1>
         <h1>Contact us</h1>
         <h1><a href="./stats.html"> > </a></h1>
       </div>
-    </nav>
+    </header>
     <main>
-      <div class="contact">
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">Name:</label>
-          <input type="text" class="form-control"  id="exampleFormControlInput2">
+      <div class="row justify-content-center">
+        <div class="contact col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Name:</label>
+            <input type="text" class="form-control"  id="exampleFormControlInput2">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Mensagge:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <input class="btn btn-dark" type="submit" value="Submit">
         </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Mensagge:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-        <input class="btn btn-dark" type="submit" value="Submit">
       </div>
     </main>
     <footer>

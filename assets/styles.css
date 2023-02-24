@@ -10,42 +10,48 @@ body {
     min-height: 100vh;
 }
 
-header{
+.header{
     background-color: #e4ebf0;
 }
 
 .logo {
     width: 6rem;
-    margin-top: 0.5rem;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
+}
+
+nav {
+    margin-right: 1rem;
 }
 
 .encabezado {
     display: flex;
     justify-content: space-around;
-}
-
-nav{
     margin-bottom: 1rem;
     background-color: #4180ab;
 }
 
-nav h1 {
+.encabezado h1 {
     text-align: center;
     padding: 1rem;
     color: white;
 }
 
-nav h1 a {
+.encabezado h1 a {
     text-decoration: none;
     color: white;
 }
 
-nav h1 a:hover {
+.encabezado h1 a:hover {
     color: #0a58ca;
 }
 
 .loupe {
     margin-top: 0.5rem;
+}
+
+.carta {
+    margin-bottom: 2rem;
 }
 
 .card img {
@@ -71,7 +77,6 @@ footer {
 }
 
 .contact {
-    margin: 5% 30%;
     padding: 2rem;
     border: 3px solid #8ab3cf;
     background-color: #e4ebf0;
