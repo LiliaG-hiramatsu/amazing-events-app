@@ -77,6 +77,8 @@ footer {
 }
 
 .contact {
+    width: 40%;
+    height: auto;
     padding: 2rem;
     border: 3px solid #8ab3cf;
     background-color: #e4ebf0;
@@ -84,6 +86,28 @@ footer {
     box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
     -webkit-box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
     -moz-box-shadow: 16px 16px 81px -19px rgba(0,0,0,0.65);
+}
+
+@media only screen and (min-width:1400px) and (max-width:2500px){
+    .contact {
+        width: 30%;
+        height: auto;
+        margin-top: 2rem;
+    }
+}
+
+@media only  screen and (max-width:680px){
+    .contact {
+        width: 60%;
+        height: auto;
+    }
+}
+
+@media only  screen and (max-width:390px){
+    .contact {
+        width: 80%;
+        height: auto;
+    }
 }
 
 .container-horizontal-card {
