@@ -450,3 +450,17 @@ const eventos = {
       }
     ]
   }
+
+  // Array con todos los eventos
+  const arrayEvents = eventos.events
+
+  // Array con las categorias
+  let array_categories = []
+  for (const event of arrayEvents) {
+      array_categories.push(event.category)
+  }
+  let array_categories_sin_repetir = []
+  array_categories_sin_repetir = array_categories.filter((valor, indice) => {
+      return array_categories.indexOf(valor) === indice;
+  }
+  );
