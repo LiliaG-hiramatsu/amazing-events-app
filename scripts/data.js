@@ -454,19 +454,15 @@ const eventos = {
   // Array con todos los eventos
   const arrayEvents = eventos.events
   
+  
   // Array con los nombres de los eventos
   const array_names = []
-    for (const event of arrayEvents) {
-        array_names.push(event.name)
-    }
+  for (const event of arrayEvents) {
+      array_names.push(event.name)
+  }
 
   // Array con las categorias
-  let array_categories = []
+  const array_categories = []
   for (const event of arrayEvents) {
       array_categories.push(event.category)
   }
-  let array_categories_sin_repetir = []
-  array_categories_sin_repetir = array_categories.filter((valor, indice) => {
-      return array_categories.indexOf(valor) === indice;
-  }
-  );
