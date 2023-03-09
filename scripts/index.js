@@ -1,5 +1,4 @@
 const contenedorTarjetas = document.getElementById("contenedor")
-
 const listaEventosFiltradosPorNombre = []
 
 function renderizarTarjetas(arrayDeEventos) {
@@ -7,12 +6,12 @@ function renderizarTarjetas(arrayDeEventos) {
     let tarjetas = ''
 
     if (arrayDeEventos.length == 0) {
-        tarjetas = `<h3>Event not found. Please, try again.</h3>
-                    <img src="../assets/images/event_not_found.png" style="width: 50%">`
+    tarjetas = `<h3>Event not found. Please, try again.</h3>
+                    <img src="../assets/images/event_not_found.png" style="width: 50%">`;
     }
 
     for (const evento of arrayDeEventos) {
-        tarjetas += `<div class="card carta" style="width: 18rem;">
+    tarjetas += `<div class="card carta" style="width: 18rem;">
                     <img src="${evento.image}" class="card-img-top alto-img" alt="">
                     <div class="card-body">
                         <h5 class="card-title">${evento.name}</h5>
@@ -29,94 +28,73 @@ function renderizarTarjetas(arrayDeEventos) {
 
 renderizarTarjetas(arrayEvents)
 
-const checkboxCategory = document.getElementById("category")
+const checkboxCategory = document.getElementById("category");
+const categoryFilter = arrayEvents.map((eventos) => eventos.category);
+const category = categoryFilter.reduce((c, e) => {
+    if (!c.includes(e)) {
+    c.push(e)
+    }
+    return c
+}, [])
 
-// Filtrar las categorias repetidas
-let array_categories_sin_repetir = []
-array_categories_sin_repetir = array_categories.filter((valor, indice) => {
-    return array_categories.indexOf(valor) === indice
+function renderizarCategorias(categorias) {
+    let categoryEvent = ''
+    for (let categoria of categorias) {
+    categoryEvent += `<div class="form-check d-inline-block pe-3">
+                            <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="${categoria}"
+                            value="${categoria}"
+                            id="flexCheckChecked"
+                            id="${categoria}"
+                            />
+                            <label
+                            class="form-check-label"
+                            for="flexCheckChecked"
+                            >
+                            ${categoria}
+                            </label>
+                            </div>`
+    }
+    checkboxCategory.innerHTML = categoryEvent
+}
+renderizarCategorias(category)
+
+let categoryChecked = []
+
+checkboxCategory.addEventListener("click", (e) => {
+    if (e.target.checked) {
+    categoryChecked.push(e.target.value);
+    } else {
+    categoryChecked = categoryChecked.filter(
+        (noChecked) => noChecked !== e.target.value
+    )
+    }
+    //console.log(categoryChecked)
+    let arrayEventosPorCategoria = arrayEvents.filter((c) =>
+    categoryChecked.includes(c.category)
+    )
+
+    if (categoryChecked.length != 0) {
+    renderizarTarjetas(arrayEventosPorCategoria)
+    } else {
+    renderizarTarjetas(arrayEvents)
+    }
 })
 
-function renderizarCategorias() {
-    let categorias = ''
-
-    for (let i = 0; i < array_categories_sin_repetir.length; i++) {
-        categorias += `<div class="form-check d-inline-block pe-3">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value="${array_categories_sin_repetir[i]}"
-                        id="flexCheckChecked"
-                        />
-                        <label
-                        class="form-check-label"
-                        for="flexCheckChecked"
-                        >
-                        ${array_categories_sin_repetir[i]}
-                        </label>
-                    </div>`
-    }
-    checkboxCategory.innerHTML = categorias
-}
-
-renderizarCategorias()
-
-checkboxCategory.addEventListener("change", () => {
-    let eventosFiltradosPorCategoria = filtrarEventosPorCategoria(arrayEvents)
-    //renderizarTarjetas(eventosFiltradosPorCategoria)
-})
-
-function filtrarEventosPorCategoria(arrayEventos) {
-    let catChecked = []
-    for (let i = 0; i < array_categories_sin_repetir.length; i++) {
-        if (array_categories_sin_repetir[i].checked) {
-            console.log("entra")
-            catChecked.push(array_categories_sin_repetir[i].value)
-            // Hay que capturar las categorias chequeadas y meterlas en el array catChecked
-            //console.log(catChecked)
-            // Hay que crear un array con los eventos que tengan la categoria chequeada
-
-            //renderizarTarjetas(arrayEvents)
-        }
-    }
-}
-
-// console.log(Array.isArray(arrayEvents))  true
-
-const buscador = document.getElementById("buscador")
+const buscador = document.getElementById("buscador");
 buscador.addEventListener("input", () => {
-    let arrayFiltrado = filtrarEventos(arrayEvents, buscador.value)
+    let arrayFiltrado = filtrarEventos(arrayEvents, buscador.value);
     renderizarTarjetas(arrayFiltrado)
 })
 
 function filtrarEventos(arrayEventos, texto) {
-    let arrayEventosFiltrados = arrayEventos.filter((evento) => evento.name.toLowerCase().includes(texto.toLowerCase()))
+    let arrayEventosFiltrados = arrayEventos.filter((evento) =>
+    evento.name.toLowerCase().includes(texto.toLowerCase())
+    )
     return arrayEventosFiltrados
 }
 
 
-
-
-
-/*
-function filtrarCategorias() {
-    
-    let catChecked = []
-
-    checkboxCategory.addEventListener('click', (e) => {
-        if (e.target.checked != undefined) {
-            if (e.target.checked) {
-                catChecked.push(e.target.value)
-            } else {
-                let index = catChecked.indexOf(e.target.value)
-                if (index != -1) {
-                    catChecked.splice(index, 1)
-                }
-            }
-        }
-        console.log(catChecked)
-    });
-}
-
-filtrarCategorias()
-*/
+// console.log(Array.isArray(arrayEvents))  true
