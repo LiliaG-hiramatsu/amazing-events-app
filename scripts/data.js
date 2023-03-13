@@ -1,6 +1,6 @@
 // 20230226112323
 // https://mindhub-xj03.onrender.com/api/amazing
-
+/*
 const eventos = {
     "currentDate": "2022-09-01",
     "events": [
@@ -451,18 +451,21 @@ const eventos = {
     ]
   }
 
-  // Array con todos los eventos
-  const arrayEvents = eventos.events
-  
-  
-  // Array con los nombres de los eventos
-  const array_names = []
-  for (const event of arrayEvents) {
-      array_names.push(event.name)
-  }
+// Array con todos los eventos
+const arrayEvents = eventos.events
 
-  // Array con las categorias
-  const array_categories = []
-  for (const event of arrayEvents) {
-      array_categories.push(event.category)
-  }
+
+// Array con los nombres de los eventos
+const array_names = []
+for (const event of arrayEvents) {
+    array_names.push(event.name)
+}
+
+// Array con las categorias
+const array_categories = []
+for (const event of arrayEvents) {
+    array_categories.push(event.category)
+}
+*/
+
+const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing'

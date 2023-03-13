@@ -1,5 +1,7 @@
 const contenedorTarjetas = document.getElementById('contenedor')
 const listaEventosFiltradosPorNombre = []
+let flagCheckbox = false
+let arrayEventosPorCategoria = []
 
 function renderizarTarjetas(arrayDeEventos) {
   contenedorTarjetas.innerHTML = ''
@@ -8,7 +10,7 @@ function renderizarTarjetas(arrayDeEventos) {
 
   if (arrayDeEventos.length == 0) {
     tarjetas = `<h3>Event not found. Please, try again.</h3>
-              <img src="../assets/images/event_not_found.png" style="width: 50%">`;
+                <img src="../assets/images/event_not_found.png" style="width: 50%">`;
   }
 
   for (const evento of arrayDeEventos) {
@@ -68,14 +70,16 @@ let categoryChecked = []
 
 checkboxCategory.addEventListener("click", (e) => {
   if (e.target.checked) {
-    categoryChecked.push(e.target.value);
+    categoryChecked.push(e.target.value)
+    flagCheckbox = true
   } else {
     categoryChecked = categoryChecked.filter(
       (noChecked) => noChecked !== e.target.value
     )
+    flagCheckbox = false
   }
   //console.log(categoryChecked)
-  let arrayEventosPorCategoria = arrayEvents.filter((c) =>
+  arrayEventosPorCategoria = arrayEvents.filter((c) =>
     categoryChecked.includes(c.category)
   )
   // Array de eventos que pertenecen a la categoria chequeada
@@ -89,7 +93,12 @@ checkboxCategory.addEventListener("click", (e) => {
 
 const buscador = document.getElementById("buscador");
 buscador.addEventListener("input", () => {
-  let arrayFiltrado = filtrarEventos(arrayEvents, buscador.value);
+  let arrayFiltrado = []
+  if (flagCheckbox == true) {
+    arrayFiltrado = filtrarEventos(arrayEventosPorCategoria, buscador.value)
+} else {
+    arrayFiltrado = filtrarEventos(arrayEvents, buscador.value);
+}
   renderizarTarjetas(arrayFiltrado)
 })
 
