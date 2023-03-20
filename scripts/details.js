@@ -11,7 +11,9 @@ function renderizarDetails(arr) {
     const queryString = location.search
     let parametros = new URLSearchParams(queryString)
     let idExtraidoDelUrl = parametros.get("id")
+    let pageExtraidoDeUrl = parametros.get("page")
     const eventDetail = arr.find(evento => evento._id == idExtraidoDelUrl)
+    
     const containerCardDetail = document.getElementById("containerCardDetail")
     containerCardDetail.innerHTML = `<div class="container-horizontal-card">
                                         <div class="card mb-3">
@@ -42,5 +44,5 @@ function renderizarDetails(arr) {
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="../index.html" type="button" class="btn btn-outline-dark" style="margin-left:20%">Back</a>`
+                                    <a href="..${pageExtraidoDeUrl}" type="button" class="btn btn-outline-dark" style="margin-left:20%">Back</a>`
 }

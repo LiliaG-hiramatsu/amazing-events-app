@@ -18,6 +18,9 @@ let flagSearch = false
 let arrayEventosPorCategoria = []
 let arrayFiltrado = []
 
+let locationActual = window.location
+//console.log(locationActual.pathname)
+
 function renderizarTarjetas(arrayDeEventos) {
     let tarjetas = ''
     
@@ -25,7 +28,7 @@ function renderizarTarjetas(arrayDeEventos) {
         tarjetas = `<h3>Event not found. Please, try again.</h3>
                     <img src="../assets/images/event_not_found.png" style="width: 50%">`;
     }
-
+    
     for (const evento of arrayDeEventos) {
         tarjetas += `<div class="card carta" style="width: 18rem;">
                         <img src="${evento.image}" class="card-img-top alto-img" alt="">
@@ -35,7 +38,7 @@ function renderizarTarjetas(arrayDeEventos) {
                         </div>
                         <div class="card-body">
                             <span class="price">Price: $${evento.price}</span>
-                            <a class="card-link btn btn-outline-primary" href="../details.html?id=${evento._id}" role="button">See more</a>
+                            <a class="card-link btn btn-outline-info" href="../details.html?id=${evento._id}&&page=${locationActual.pathname}" role="button">See more</a>
                         </div>
                     </div>`
     }
@@ -49,7 +52,7 @@ function renderizarCategorias(categorias) {
     for (let categoria of categorias) {
     categoryEvent += `<div class="form-check d-inline-block pe-3">
                             <input
-                            class="mycheck"
+                            class="form-check-input"
                             type="checkbox"
                             name="${categoria}"
                             value="${categoria}"
