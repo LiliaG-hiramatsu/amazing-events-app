@@ -43,11 +43,36 @@ nav {
 }
 
 .encabezado h1 a:hover {
-  color: #0a58ca;
+  color: #1970ab;
+}
+
+main {
+  background-image: url(./images/fondo1.png);
+  background-repeat: no-repeat;
 }
 
 .loupe {
   margin-top: 0.5rem;
+}
+
+.mycheck {
+  cursor: pointer;
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 20%;
+  appearance: none;
+  border: 2px solid rgb(168, 168, 168);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.mycheck:checked {
+  background-color: #0074c2;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+.mycheck:disabled {
+  background-color: rgb(198, 198, 198);
 }
 
 .carta {
@@ -70,7 +95,6 @@ nav {
 }
 
 footer {
-  margin-top: 2rem;
   padding: 30px 20px;
   width: 100%;
   background-color: #bdd1de;
@@ -123,11 +147,19 @@ footer {
   margin: 5% 10%;
 }
 
-thead {
-  border: 1px solid black;
-  background-color: rgb(227, 239, 248);
+.table-head {
+  background-color: #4f86aa;
+  color: white;
+}
+
+.table-caption {
+  background-color: #dcf1ff;
 }
 
 td {
   padding: 2px;
+}
+
+.table-body tr:hover {
+  background-color: #eff8fc;
 }

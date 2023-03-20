@@ -1,21 +1,40 @@
-const contenedorTarjetas = document.getElementById('contenedor')
-const listaEventosFiltradosPorNombre = []
+const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing'
+
+fetch(API_URL)
+  .then(res => res.json())
+  .then(response => {
+    let data = response.events
+    let fechaActual = response.currentDate
+    const category = categoriasSinRepetir(data)
+    renderizarCategorias(category)
+    let pastEvents = []
+    for (const evento of data) {
+      if (fechaActual > evento.date) {
+        pastEvents.push(evento)
+      }
+    }
+    renderizarTarjetas(pastEvents)
+    filtrarPorCategoria(pastEvents)
+    filtrarPorBusqueda(pastEvents)
+  })
+
+const contenedorTarjetas = document.getElementById("contenedor")
+
 let flagCheckbox = false
+let flagSearch = false
 let arrayEventosPorCategoria = []
+let arrayFiltrado = []
 
 function renderizarTarjetas(arrayDeEventos) {
-  contenedorTarjetas.innerHTML = ''
   let tarjetas = ''
-  let fechaActual = eventos.currentDate
-
+  //console.log(arrayDeEventos)
   if (arrayDeEventos.length == 0) {
-    tarjetas = `<h3>Event not found. Please, try again.</h3>
-                <img src="../assets/images/event_not_found.png" style="width: 50%">`;
+      tarjetas = `<h3>Event not found. Please, try again.</h3>
+                  <img src="../assets/images/event_not_found.png" style="width: 50%">`;
   }
 
   for (const evento of arrayDeEventos) {
-    if (fechaActual > evento.date) {
-      tarjetas += `<div class="card carta" style="width: 18rem;">
+    tarjetas += `<div class="card carta" style="width: 18rem;">
                     <img src="${evento.image}" class="card-img-top alto-img" alt="">
                     <div class="card-body">
                         <h5 class="card-title">${evento.name}</h5>
@@ -23,84 +42,98 @@ function renderizarTarjetas(arrayDeEventos) {
                     </div>
                     <div class="card-body">
                         <span class="price">Price: $${evento.price}</span>
-                        <a class="card-link btn btn-outline-primary" href="./details.html" role="button">See more</a>
+                        <a class="card-link btn btn-outline-primary" href="../details.html?id=${evento._id}" role="button">See more</a>
                     </div>
-                    </div>`
-    }
+                </div>`
   }
   contenedorTarjetas.innerHTML = tarjetas
 }
 
-renderizarTarjetas(arrayEvents)
-
 const checkboxCategory = document.getElementById("category");
-const categoryFilter = arrayEvents.map((eventos) => eventos.category);
-const category = categoryFilter.reduce((c, e) => {
-  if (!c.includes(e)) {
-    c.push(e)
-  }
-  return c
-}, [])
-
 function renderizarCategorias(categorias) {
-  let categoryEvent = ''
-  for (let categoria of categorias) {
+    let categoryEvent = ''
+    for (let categoria of categorias) {
     categoryEvent += `<div class="form-check d-inline-block pe-3">
-                      <input
-                      class="form-check-input"
-                      type="checkbox"
-                      name="${categoria}"
-                      value="${categoria}"
-                      id="flexCheckChecked"
-                      id="${categoria}"
-                      />
-                      <label
-                      class="form-check-label"
-                      for="flexCheckChecked"
-                      >
-                      ${categoria}
-                      </label>
-                      </div>`
-  }
-  checkboxCategory.innerHTML = categoryEvent
+                            <input
+                            class="mycheck"
+                            type="checkbox"
+                            name="${categoria}"
+                            value="${categoria}"
+                            id="flexCheckChecked"
+                            id="${categoria}"
+                            />
+                            <label
+                            class="form-check-label"
+                            for="flexCheckChecked"
+                            >
+                            ${categoria}
+                            </label>
+                            </div>`
+    }
+    checkboxCategory.innerHTML = categoryEvent
 }
-renderizarCategorias(category)
 
-let categoryChecked = []
+function categoriasSinRepetir(arrayEventos) {
+  const categoryFilter = arrayEventos.map((eventos) => eventos.category);
+  const category = categoryFilter.reduce((c, e) => {
+    if (!c.includes(e)) {
+      c.push(e)
+    }
+    return c
+  }, [])
+  return category
+}
 
-checkboxCategory.addEventListener("click", (e) => {
-  if (e.target.checked) {
-    categoryChecked.push(e.target.value)
-    flagCheckbox = true
-  } else {
-    categoryChecked = categoryChecked.filter(
-      (noChecked) => noChecked !== e.target.value
+function filtrarPorCategoria(arrayEvents) {
+  let categoryChecked = []
+  checkboxCategory.addEventListener("click", (e) => {
+    if (e.target.checked) {
+      categoryChecked.push(e.target.value)
+      flagCheckbox = true
+    } else {
+      categoryChecked = categoryChecked.filter(
+          (noChecked) => noChecked !== e.target.value
+      )
+      flagCheckbox = false
+      //console.log(flagSearch)
+      if (flagSearch == true) {
+          arrayFiltrado = filtrarEventos(arrayEvents, buscador.value)
+          //console.log(arrayFiltrado)
+          renderizarTarjetas(arrayFiltrado)
+      }
+    }
+    //console.log(categoryChecked)
+    arrayEventosPorCategoria = arrayEvents.filter((c) =>
+      categoryChecked.includes(c.category)
     )
-    flagCheckbox = false
-  }
-  //console.log(categoryChecked)
-  arrayEventosPorCategoria = arrayEvents.filter((c) =>
-    categoryChecked.includes(c.category)
-  )
-  // Array de eventos que pertenecen a la categoria chequeada
-  // console.log(arrayEventosPorCategoria)
-  if (categoryChecked.length != 0) {
-    renderizarTarjetas(arrayEventosPorCategoria)
-  } else {
-    renderizarTarjetas(arrayEvents)
-  }
-})
+    //console.log(arrayEventosPorCategoria)
+    if (categoryChecked.length != 0) {
+      if (flagSearch == true) {
+          arrayFiltrado = filtrarEventos(arrayEventosPorCategoria, buscador.value)
+          renderizarTarjetas(arrayFiltrado)
+      } else {
+          renderizarTarjetas(arrayEventosPorCategoria)
+      }
+    }
+    else if (flagCheckbox == false && flagSearch == false) {
+      renderizarTarjetas(arrayEvents)
+    }
+  })
+}
 
 const buscador = document.getElementById("buscador");
-buscador.addEventListener("input", () => {
-  let arrayFiltrado = []
-  if (flagCheckbox == true) {
-    arrayFiltrado = filtrarEventos(arrayEventosPorCategoria, buscador.value)
-} else {
-    arrayFiltrado = filtrarEventos(arrayEvents, buscador.value);
+function filtrarPorBusqueda(arrayEvents) {
+  buscador.addEventListener("input", () => {
+    flagSearch = true
+    // Verifico si hay un checked para hacer la busqueda en base a esa categoria chequeada.
+    if (flagCheckbox == true) {
+      arrayFiltrado = filtrarEventos(arrayEventosPorCategoria, buscador.value)
+    } else {
+      arrayFiltrado = filtrarEventos(arrayEvents, buscador.value);
+    }
+    renderizarTarjetas(arrayFiltrado)
+  })
 }
-  renderizarTarjetas(arrayFiltrado)
-})
 
 function filtrarEventos(arrayEventos, texto) {
   let arrayEventosFiltrados = arrayEventos.filter((evento) =>

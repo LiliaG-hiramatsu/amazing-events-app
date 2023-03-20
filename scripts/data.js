@@ -453,19 +453,4 @@ const eventos = {
 
 // Array con todos los eventos
 const arrayEvents = eventos.events
-
-
-// Array con los nombres de los eventos
-const array_names = []
-for (const event of arrayEvents) {
-    array_names.push(event.name)
-}
-
-// Array con las categorias
-const array_categories = []
-for (const event of arrayEvents) {
-    array_categories.push(event.category)
-}
 */
-
-const API_URL = 'https://mindhub-xj03.onrender.com/api/amazing'
