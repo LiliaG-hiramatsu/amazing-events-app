@@ -21,7 +21,7 @@ function renderizarDetails(arr) {
                                                 <div class="col-md-4">
                                                     <img
                                                         src="${eventDetail.image}"
-                                                        class="img-fluid rounded-start"
+                                                        class="rounded-start card-img"
                                                         alt="Imagen del evento"
                                                     />
                                                 </div>
