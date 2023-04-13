@@ -65,7 +65,7 @@ function renderizarCategorias(categorias) {
                             >
                             ${categoria}
                             </label>
-                            </div>`
+                        </div>`
     }
     checkboxCategory.innerHTML = categoryEvent
 }
