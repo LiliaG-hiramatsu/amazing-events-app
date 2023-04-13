@@ -67,7 +67,7 @@ main {
 
 .alto-img {
   height: 14rem;
-  object-fit: cover
+  object-fit: cover;
 }
 
 .price {
